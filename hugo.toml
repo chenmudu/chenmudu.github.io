@@ -1,4 +1,4 @@
-baseURL = "https://chenmudu.github.io/"
+baseURL = "https://mymemories.uno/"
 title = "chenmudu"
 languageCode = "zh-CN"
 defaultContentLanguage = "zh"
@@ -20,7 +20,8 @@ buildFuture = true   # 允许预写/晚于当前时刻的内容进入构建（�
   isHTML = false
 
 [params]
-  defaultTheme = "dark"
+  defaultTheme = "light"
+  disableThemeToggle = true   # 深色版配色尚未设计，先锁定浅色（紫罗兰晨光）
   ShowReadingTime = true
   ShowPostNavLinks = true
   ShowBreadCrumbs = true

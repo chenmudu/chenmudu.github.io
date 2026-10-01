@@ -1,75 +1,54 @@
-/* ============ 时间胶囊 · 暖色档案馆调校 ============ */
+/* ============ mymemories v6 · 紫罗兰晨光 · 与 PaperMod 语义变量对齐 ============ */
+/* 本文件替代 v2 时代的暖色档案馆 custom.css：统一全站为浅色紫罗兰语义 */
 
-:root {
-  --theme: #191511;
-  --entry: #221d17;
-  --primary: #d8a24a;
-  --secondary: #a6987f;
-  --tertiary: #6e6455;
-  --content: #cec3b0;
-  --code-block-bg: #241f18;
-  --code-bg: #2b251d;
-  --border: #37312a;
-}
-html[data-theme='light'] {
-  --theme: #f7f3ea;
-  --entry: #fffdf7;
-  --primary: #a06b1c;
-  --secondary: #6b6152;
-  --tertiary: #9a9078;
-  --content: #322d26;
-  --code-block-bg: #efe9dc;
-  --code-bg: #e6dfcf;
-  --border: #e0d8c6;
+:root, html[data-theme='light'] {
+  --theme: #fafaff;
+  --entry: #ffffff;
+  --primary: #2b2b3c;
+  --secondary: #8a8aa3;
+  --tertiary: #b9b3d6;
+  --content: #2b2b3c;
+  --code-block-bg: #f3f2fb;
+  --code-bg: #f3f2fb;
+  --border: #eae9f4;
 }
 
-/* 标题用楷体，带时间的手写感 */
-.home-info .entry-title,
+/* 页面底色统一为设计底色（PaperMod 的 .list 规则会用 code-bg 覆盖 body） */
+body, body.list { background: #fafaff; }
+
+/* 标题楷体（站内所有页面） */
 .entry-header h1,
 .entry-header h2,
 .entry-header .entry-hint-parent,
-.term-entry h1 {
+.term-entry h1,
+.home-info .entry-title {
   font-family: 'LXGW WenKai Screen', 'Noto Serif SC', 'Songti SC', 'STSong', serif;
 }
-.logo a {
-  font-family: 'LXGW WenKai Screen', 'Noto Serif SC', 'Songti SC', serif;
-}
 
-/* 首页 hero */
-.home-info .entry-title { font-size: 2.8rem; letter-spacing: .02em; }
-.home-info .entry-content { font-size: 1.05rem; color: var(--secondary); }
-
-/* 文章列表卡片化：一排档案盒 */
+/* 列表页文章卡片（与首页卡片同气质） */
 .post-entry {
   background: var(--entry);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 13px;
   margin: 0 0 1rem 0;
   padding: .9rem 1.2rem;
-  box-shadow: 0 1px 0 rgba(0,0,0,.25);
   transition: border-color .18s ease, transform .18s ease;
 }
-.post-entry:hover {
-  border-color: var(--primary);
-  transform: translateY(-2px);
-}
-.post-entry .entry-footer { margin-top: .5rem; color: var(--tertiary); }
+.post-entry:hover { border-color: #6c5ce7; transform: translateY(-2px); }
+.post-entry .entry-footer { margin-top: .5rem; color: var(--secondary); }
 .post-entry .entry-cover img { border-radius: 8px; }
 
-/* 日期与阅读时长：等宽数字，像档案戳 */
-.entry-footer, .post-title { font-variant-numeric: tabular-nums; }
-
-/* 链接：琥珀色细节 */
-.post-content a { text-decoration-color: var(--primary); text-underline-offset: 3px; }
-.post-content a:hover { color: var(--primary); }
+/* 内容页链接：紫罗兰细节 */
+.post-content a { text-decoration-color: #6c5ce7; text-underline-offset: 3px; }
+.post-content a:hover { color: #6c5ce7; }
 
 /* 头尾分隔线 */
 .header { border-bottom: 1px solid var(--border); }
-.footer { border-top: 1px solid var(--border); color: var(--tertiary); }
+.footer { border-top: 1px solid var(--border); color: var(--secondary); }
 .logo img, .logo svg { border-radius: 6px; margin-right: 8px; }
 
 /* 代码块描边 */
 .post-content pre { border: 1px solid var(--border); }
 
 /* 选中文字 */
-::selection { background: var(--primary); color: #191511; }
+::selection { background: #6c5ce7; color: #fff; }
