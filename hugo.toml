@@ -7,9 +7,17 @@ theme = "PaperMod"
 
 enableEmoji = true
 enableRobotsTXT = true
+buildFuture = true   # 允许预写/晚于当前时刻的内容进入构建（时间轨道的"未来锁定"负责展示层）
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "ALLJSON"]
+  section = ["HTML", "RSS"]
+
+[outputFormats.ALLJSON]
+  mediaType = "application/json"
+  baseName = "all"
+  isPlainText = true
+  isHTML = false
 
 [params]
   defaultTheme = "dark"
@@ -59,3 +67,8 @@ enableRobotsTXT = true
     name = "关于"
     url = "/about/"
     weight = 5
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

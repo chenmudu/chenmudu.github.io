@@ -1,0 +1,7 @@
+{{- $sections := slice "moments" "notes" "games" "work" "memoir" -}}
+{{- $tmap := dict "moments" "moment" "notes" "note" "games" "game" "work" "work" "memoir" "memory" -}}
+{{- $items := slice -}}
+{{- range where (where site.RegularPages "Section" "in" $sections) "Params.visibility" "ne" "private" -}}
+{{- $items = $items | append (dict "title" .Title "url" .Permalink "date" (.Date.Format "2006-01-02T15:04:05Z07:00") "type" (index $tmap .Section) "tags" (.Params.tags | default slice) "summary" (.Params.summary | default (.Summary | plainify)) ) -}}
+{{- end -}}
+{{- $items | jsonify (dict "indent" " ") -}}

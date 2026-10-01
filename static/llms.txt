@@ -1,0 +1,6 @@
+# mymemories · chenmudu
+chenmudu 的个人数字档案馆：工作、生活、游戏与记忆，按时间轴封存。
+- 全量内容索引（JSON）：/all.json
+- 站点地图：/sitemap.xml
+- 内容类型：动态(moments) / 随笔(notes) / 游戏(games) / 工作(work) / 记忆(memoir)
+- 每条内容为 Markdown，含 date / type / tags 元数据；公开标记为 visibility: public

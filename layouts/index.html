@@ -1,0 +1,92 @@
+{{ define "main" }}
+{{- $sections := slice "moments" "notes" "games" "work" "memoir" -}}
+{{- $pages := where (where site.RegularPages "Section" "in" $sections) "Params.visibility" "ne" "private" -}}
+{{- $groups := $pages.GroupByDate "2006-01" "desc" -}}
+{{- $lastKey := (index $groups (sub (len $groups) 1)).Key -}}
+{{- $cn := slice "" "一月" "二月" "三月" "四月" "五月" "六月" "七月" "八月" "九月" "十月" "十一月" "十二月" -}}
+{{- $en := slice "" "JANUARY" "FEBRUARY" "MARCH" "APRIL" "MAY" "JUNE" "JULY" "AUGUST" "SEPTEMBER" "OCTOBER" "NOVEMBER" "DECEMBER" -}}
+{{- $counts := dict -}}
+{{- range $groups }}{{ $counts = merge $counts (dict (printf "%s-%d" (substr .Key 0 4) (int (strings.TrimPrefix "0" (substr .Key 5 2)))) (len .Pages)) }}{{ end -}}
+<script>
+window.__MEM = {
+  CUR: ["{{ now.Format "2006" }}", "{{ now.Format "1" }}"],
+  FIRST: ["{{ substr $lastKey 0 4 }}", {{ int (strings.TrimPrefix "0" (substr $lastKey 5 2)) }}],
+  COUNTS: {{ $counts | jsonify | safeJS }}
+};
+</script>
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>chenmudu<em>.</em></h1>
+      <div class="tag">。。。</div>
+      <div class="socials"><span>GitHub</span><span>邮箱</span><span>Steam</span><span>抖音</span></div>
+    </div>
+    <div class="avwrap"><div class="ring"></div><img src="{{ "avatar.png" | relURL }}" alt="头像"></div>
+  </div>
+
+  <div class="filters">
+    <div class="frow time">
+      <div class="railmod">
+        <button class="rnav" id="prev">‹</button>
+        <div class="railtrack" id="railtrack">
+          <div class="rprog" id="rprog"></div>
+          <div class="rread" id="rread"><span class="y" id="rd-y">{{ now.Format "2006" }}</span><span class="m" id="rd-m"></span></div>
+        </div>
+        <button class="rnav" id="next">›</button>
+        <button class="rall" id="rall">全部时间</button>
+      </div>
+    </div>
+    <div class="frow main">
+      <span class="chip" data-type="all">全部</span>
+      <span class="chip on" data-type="moment">💬 动态</span>
+      <span class="chip" data-type="note">✏️ 随笔</span>
+      <span class="chip" data-type="game" data-sub="1">🎮 游戏</span>
+      <span class="chip" data-type="work" data-sub="1">💼 工作</span>
+      <span class="chip" data-type="memory" data-sub="1">📖 记忆</span>
+    </div>
+    <div class="frow sub" id="subrow">
+      <span class="sl">细类</span>
+      <span class="chip sm on" data-tag="all">全部</span><span class="chip sm" data-tag="VALORANT">VALORANT</span><span class="chip sm" data-tag="CS2">CS2</span><span class="chip sm" data-tag="艾尔登法环">艾尔登法环</span>
+    </div>
+  </div>
+
+  <div id="stream">
+    {{ range $groups }}
+    <section class="msc" data-y="{{ substr .Key 0 4 }}" data-m="{{ int (strings.TrimPrefix "0" (substr .Key 5 2)) }}"{{ if ne .Key (index $groups 0).Key }} style="display:none"{{ end }}>
+      <div class="month"><span class="m">{{ index $cn (int (strings.TrimPrefix "0" (substr .Key 5 2))) }}</span><span class="y">{{ substr .Key 0 4 }} · {{ index $en (int (strings.TrimPrefix "0" (substr .Key 5 2))) }}</span><span class="cnt"></span></div>
+      <div class="grid">
+        {{ range .Pages }}
+        {{ $tag := delimit (.Params.tags | default slice) "," }}
+        {{ if eq .Section "moments" }}
+        <div class="moment" data-type="moment"><span class="txt">{{ .Content }}</span><span class="time">{{ .Date.Format "01-02 15:04" }}</span></div>
+        {{ else if eq .Section "games" }}
+        <a class="card" data-type="game" data-tag="{{ $tag }}" href="{{ .Permalink }}">
+          <div class="thumb t1"><div class="play">▶</div><span class="dy"><i>抖音</i></span>{{ with index (.Params.tags | default slice) 0 }}<span class="tag3">{{ . }}</span>{{ end }}{{ with .Params.duration }}<span class="dur">{{ . }}</span>{{ end }}</div>
+          <div class="meta"><div class="t">{{ .Title }}</div><div class="d"><span class="ty">🎮 游戏</span><span>{{ .Date.Format "01-02" }}</span>{{ with .Params.likes }}<span>♥ {{ . }}</span>{{ end }}</div></div>
+        </a>
+        {{ else if eq .Section "work" }}
+        <a class="card" data-type="work" data-tag="{{ $tag }}" href="{{ .Permalink }}">
+          <div class="thumb t3"><span class="big">💼</span></div>
+          <div class="meta"><div class="t">{{ .Title }}</div><div class="d"><span class="ty">💼 工作</span><span>{{ .Date.Format "01-02" }}</span>{{ with .Params.stack }}<span>{{ . }}</span>{{ end }}</div></div>
+        </a>
+        {{ else if eq .Section "memoir" }}
+        <a class="card" data-type="memory" data-tag="{{ $tag }}" href="{{ .Permalink }}">
+          <div class="thumb t2">{{ $imgs := .Resources.ByType "image" }}{{ if $imgs }}<div class="ph6">{{ range first 6 $imgs }}<div style="padding:0"><img src="{{ .RelPermalink }}" style="width:100%;height:100%;object-fit:cover" alt=""></div>{{ end }}</div>{{ else }}<span class="big">📷</span>{{ end }}</div>
+          <div class="meta"><div class="t">{{ .Title }}</div><div class="d"><span class="ty">📖 记忆</span><span>{{ .Date.Format "01-02" }}</span>{{ with $imgs }}<span>{{ len . }} 张照片</span>{{ end }}</div></div>
+        </a>
+        {{ else }}
+        <a class="card" data-type="note" data-tag="{{ $tag }}" href="{{ .Permalink }}">
+          <div class="thumb t2"><span class="big">✏️</span></div>
+          <div class="meta"><div class="t">{{ .Title }}</div><div class="d"><span class="ty">✏️ 随笔</span><span>{{ .Date.Format "01-02" }}</span></div></div>
+        </a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+    <div class="empty" id="empty" style="display:none"><b>这里还空着</b><span id="emptyhint"></span></div>
+    <div class="allwrap"><span class="alllink" id="alllink">⟵ 查看全部时间轴</span></div>
+  </div>
+</div>
+<script src="{{ "js/timeline.js" | relURL }}" defer></script>
+{{ end }}
