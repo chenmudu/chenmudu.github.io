@@ -109,13 +109,13 @@ document.getElementById('alllink').addEventListener('click', () => {
 
 document.getElementById('logo').addEventListener('click', () => {
   state.y = CUR[0]; state.m = CUR[1]; state.type = 'moment'; state.tag = 'all';
-  document.querySelectorAll('.frow.main .chip').forEach(x => x.classList.toggle('on', x.dataset.type === 'moment'));
+  document.querySelectorAll('.frow.secs .chip').forEach(x => x.classList.toggle('on', x.dataset.type === 'moment'));
   document.getElementById('subrow').style.display = 'none';
   applyFilters();
 });
 
-document.querySelectorAll('.frow.main .chip').forEach(c => c.addEventListener('click', () => {
-  document.querySelectorAll('.frow.main .chip').forEach(x => x.classList.remove('on'));
+document.querySelectorAll('.frow.secs .chip').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('.frow.secs .chip').forEach(x => x.classList.remove('on'));
   c.classList.add('on');
   state.type = c.dataset.type;
   if (c.dataset.sub !== '1') state.tag = 'all';

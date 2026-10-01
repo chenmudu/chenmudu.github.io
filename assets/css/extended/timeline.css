@@ -31,7 +31,7 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   /* ===== 筛选条（紧凑） ===== */
   .filters { position: sticky; top: 46px; z-index: 9; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 12px; padding: 4px 10px 6px; margin-bottom: 8px; box-shadow: 0 1px 6px rgba(20,60,52,.04); }
-  .frow.main { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .frow.secs { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .chip { font-size: 12px; color: var(--muted); border: 1px solid var(--line); background: #fff; padding: 1px 10px; border-radius: 13px; cursor: pointer; transition: .15s; user-select: none; }
   .chip:hover { color: var(--acc2); border-color: var(--acc); }
   .chip.on { color: #fff; background: var(--grad); border-color: transparent; font-weight: 700; }

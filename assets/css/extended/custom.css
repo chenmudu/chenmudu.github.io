@@ -16,6 +16,9 @@
 /* 页面底色统一为设计底色（PaperMod 的 .list 规则会用 code-bg 覆盖 body） */
 body, body.list { background: #fafaff; }
 
+/* 隐藏主题自带的页脚（© ... Powered by Hugo & PaperMod） */
+footer.footer { display: none; }
+
 /* 标题楷体（站内所有页面） */
 .entry-header h1,
 .entry-header h2,
