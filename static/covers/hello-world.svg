@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191511"/>
+      <stop offset="1" stop-color="#2e261a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="36" y="36" width="1128" height="558" fill="none" stroke="#d8a24a" stroke-width="2" opacity="0.5"/>
+  <text x="80" y="150" font-family="serif" font-size="34" fill="#d8a24a" letter-spacing="8">ARCHIVE - NO.01</text>
+  <text x="80" y="360" font-family="'Noto Serif SC','Songti SC',serif" font-size="96" fill="#cec3b0">Hello World</text>
+  <text x="80" y="450" font-family="'Noto Serif SC','Songti SC',serif" font-size="40" fill="#a6987f">我的博客开张了 - 一切从这里开始</text>
+  <text x="80" y="545" font-family="serif" font-size="26" fill="#6e6455">2026-09-30 · chenmudu</text>
+</svg>

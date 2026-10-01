@@ -4,6 +4,9 @@ date: 2026-09-30
 draft: false
 tags: ["博客"]
 summary: "第一篇文章：记录从零搭建这个博客的过程。"
+cover:
+  image: "/covers/hello-world.svg"
+  alt: "Hello World 封面"
 ---
 
 ## 为什么写博客

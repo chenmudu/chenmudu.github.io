@@ -1,5 +1,5 @@
 baseURL = "https://chenmudu.github.io/"
-title = "chenmudu 的博客"
+title = "chenmudu"
 languageCode = "zh-CN"
 defaultContentLanguage = "zh"
 hasCJKLanguage = true
@@ -12,7 +12,7 @@ enableRobotsTXT = true
   home = ["HTML", "RSS", "JSON"]
 
 [params]
-  defaultTheme = "auto"
+  defaultTheme = "dark"
   ShowReadingTime = true
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
@@ -20,14 +20,23 @@ enableRobotsTXT = true
   ShowShareButtons = false
   ShowToc = true
   TocOpen = false
+  description = "chenmudu 的个人档案馆：工作、生活、游戏与记忆。"
+
+  [params.label]
+    icon = "/logo.svg"
+    iconHeight = 26
 
   [params.homeInfoParams]
-    Title = "你好，我是 chenmudu 👋"
-    Content = "欢迎来到我的博客，这里记录我的学习笔记与思考。"
+    Title = "chenmudu"
+    Content = "把一生拆成一条条记忆，封存于此——工作、生活、游戏与思考。给未来的自己，也给未来的你。"
 
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/chenmudu"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:chenmudu@gmail.com"
 
 [menus]
   [[menus.main]]
